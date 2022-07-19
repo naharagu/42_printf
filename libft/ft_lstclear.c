@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/17 20:55:36 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/18 22:56:25 by naharagu         ###   ########.fr       */
+/*   Created: 2022/04/28 06:19:05 by naharagu          #+#    #+#             */
+/*   Updated: 2022/07/11 06:00:30 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *input)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	const char	*tmp;
-	va_list		args;
-	size_t		count;
+	t_list	*tmp;
 
-	tmp = ft_strdup(input);
-	if (!tmp)
-		return (0);
-	va_start(args, input);
-	count = count_output(tmp ,args);
-	va_end(args);
-	free(save);
-	return (count);
+	if (!lst || !del)
+		return ;
+	while (*lst)
+	{
+		tmp = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = tmp;
+	}
 }

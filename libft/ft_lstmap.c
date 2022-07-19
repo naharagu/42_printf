@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/17 20:55:36 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/18 22:56:25 by naharagu         ###   ########.fr       */
+/*   Created: 2022/04/28 06:19:05 by naharagu          #+#    #+#             */
+/*   Updated: 2022/07/16 14:43:43 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *input)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	const char	*tmp;
-	va_list		args;
-	size_t		count;
+	t_list	*first;
+	t_list	*new;
 
-	tmp = ft_strdup(input);
-	if (!tmp)
-		return (0);
-	va_start(args, input);
-	count = count_output(tmp ,args);
-	va_end(args);
-	free(save);
-	return (count);
+	if (!f || !del || !lst)
+		return (NULL);
+	first = NULL;
+	while (lst)
+	{
+		new = ft_lstnew(f(lst->content));
+		if (!new)
+		{
+			ft_lstclear(&first, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&first, new);
+		lst = lst->next;
+	}
+	return (first);
 }

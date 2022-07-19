@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/17 20:55:36 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/18 22:56:25 by naharagu         ###   ########.fr       */
+/*   Created: 2022/04/29 16:13:20 by naharagu          #+#    #+#             */
+/*   Updated: 2022/07/16 13:58:30 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *input)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	const char	*tmp;
-	va_list		args;
-	size_t		count;
+	size_t	i;
+	char	*res;
 
-	tmp = ft_strdup(input);
-	if (!tmp)
-		return (0);
-	va_start(args, input);
-	count = count_output(tmp ,args);
-	va_end(args);
-	free(save);
-	return (count);
+	if (!s || !f)
+		return (NULL);
+	res = (char *)malloc(ft_strlen(s) + 1);
+	if (!res)
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		res[i] = f(i, s[i]);
+		++i;
+	}
+	res[i] = '\0';
+	return (res);
 }

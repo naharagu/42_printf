@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/17 20:55:36 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/18 22:56:25 by naharagu         ###   ########.fr       */
+/*   Created: 2022/04/28 06:19:05 by naharagu          #+#    #+#             */
+/*   Updated: 2022/07/16 16:10:13 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	ft_printf(const char *input)
+int	ft_tolower(int c)
 {
-	const char	*tmp;
-	va_list		args;
-	size_t		count;
-
-	tmp = ft_strdup(input);
-	if (!tmp)
-		return (0);
-	va_start(args, input);
-	count = count_output(tmp ,args);
-	va_end(args);
-	free(save);
-	return (count);
+	if (c >= 'A' && c <= 'Z')
+		return (c + ('a' - 'A'));
+	return (c);
 }

@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/17 20:55:36 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/18 22:56:25 by naharagu         ###   ########.fr       */
+/*   Created: 2022/04/29 16:13:20 by naharagu          #+#    #+#             */
+/*   Updated: 2022/07/16 17:09:14 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *input)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	const char	*tmp;
-	va_list		args;
-	size_t		count;
+	int	diff;
 
-	tmp = ft_strdup(input);
-	if (!tmp)
-		return (0);
-	va_start(args, input);
-	count = count_output(tmp ,args);
-	va_end(args);
-	free(save);
-	return (count);
+	while (n--)
+	{
+		diff = *(unsigned char *)s1++ - *(unsigned char *)s2++;
+		if (diff)
+			return (diff);
+		if (!*s1)
+			break ;
+	}
+	return (0);
 }

@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/17 20:55:36 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/18 22:56:25 by naharagu         ###   ########.fr       */
+/*   Created: 2022/04/28 06:19:05 by naharagu          #+#    #+#             */
+/*   Updated: 2022/07/10 17:19:29 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *input)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	const char	*tmp;
-	va_list		args;
-	size_t		count;
+	char	*res;
+	size_t	i;
+	size_t	j;
 
-	tmp = ft_strdup(input);
-	if (!tmp)
-		return (0);
-	va_start(args, input);
-	count = count_output(tmp ,args);
-	va_end(args);
-	free(save);
-	return (count);
+	if (!s1 | !s2)
+		return (NULL);
+	i = ft_strlen(s1);
+	j = ft_strlen(s2);
+	res = (char *)malloc(i + j + 1);
+	if (!res)
+		return (NULL);
+	ft_strlcpy(res, s1, i + 1);
+	ft_strlcpy(res + i, s2, j + 1);
+	return (res);
 }
