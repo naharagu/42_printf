@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 20:59:39 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/18 22:52:13 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/24 16:02:31 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdarg.h>
 # include <limits.h>
 
+# include <stdio.h>
 
 int		ft_atoi(const char *s);
 char	*ft_strdup(const char *s1);

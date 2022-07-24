@@ -6,24 +6,24 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 20:55:36 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/18 22:56:25 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/24 17:04:54 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *input)
+int	ft_printf(const char *fmt, ...)
 {
-	const char	*tmp;
-	va_list		args;
-	size_t		count;
+	va_list	ap;
+	char	*s;
 
-	tmp = ft_strdup(input);
-	if (!tmp)
-		return (0);
-	va_start(args, input);
-	count = count_output(tmp ,args);
-	va_end(args);
-	free(save);
-	return (count);
+	va_start(ap, input);
+	s = (char *)va_arg(ap, char *);
+	va_end(ap);
+}
+
+int main(void)
+{
+	ft_printf("ft: [%s]\n");
+	printf("st: [%s]\n");
 }

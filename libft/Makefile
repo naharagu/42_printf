@@ -34,9 +34,8 @@ SRCS    = 	ft_atoi.c \
 			ft_putchar_fd.c \
 			ft_putstr_fd.c \
 			ft_putendl_fd.c \
-			ft_putnbr_fd.c
-
-SRCS_BNS =	ft_lstnew.c \
+			ft_putnbr_fd.c \
+			ft_lstnew.c \
 			ft_lstadd_front.c \
 			ft_lstsize.c \
 			ft_lstlast.c \
@@ -50,21 +49,13 @@ NAME		= libft.a
 
 OBJS		= ${SRCS:%.c=%.o}
 
-OBJS_BNS	= $(SRCS_BNS:%.c=%.o)
-
-ifdef WITH_BONUS
-	OBJS += $(OBJS_BNS)
-endif
-
 $(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS)
 
 all: $(NAME)
 clean:
-	rm -f $(OBJS) $(OBJS_BNS)
+	rm -f $(OBJS)
 fclean: clean
 	rm -f $(NAME)
 re: fclean all
-bonus:
-	make WITH_BONUS=1
 .PHONY: all clean fclean re bonus

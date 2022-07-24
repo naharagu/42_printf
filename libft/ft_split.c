@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 06:19:05 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/17 08:11:43 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/23 09:44:27 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ static char	**free_dst(char **dst, size_t j)
 	count = 0;
 	while (count < j)
 	{
-		free (dst[j]);
+		free(dst[j]);
 		count++;
 	}
-	free (dst);
+	free(dst);
 	return (dst);
 }
 
@@ -57,10 +57,10 @@ static char	**split_helper(char **dst, char const *s, char c)
 			len++;
 		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
 		{
-			dst[j] = (char *)malloc(sizeof(char) * (len + 1));
+			dst[j] = malloc((len + 1) * sizeof(char));
 			if (!dst[j])
-				return (free_dst (dst, j));
-			ft_strlcpy (dst[j], &s[i - len + 1], len + 1);
+				return (free_dst(dst, j));
+			ft_strlcpy(dst[j], &s[i - len + 1], len + 1);
 			j++;
 			len = 0;
 		}
@@ -78,10 +78,10 @@ char	**ft_split(char const *s, char c)
 	if (s == NULL)
 		return (NULL);
 	count = count_word(s, c);
-	dst = (char **)malloc(sizeof(char *) * (count + 1));
+	dst = malloc((count + 1) * sizeof(char *));
 	if (!dst)
 		return (NULL);
-	if (!split_helper (dst, s, c))
+	if (!split_helper(dst, s, c))
 		return (NULL);
 	return (dst);
 }
