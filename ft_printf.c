@@ -6,16 +6,22 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 20:55:36 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/27 19:40:41 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/27 20:01:56 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-long long putchar_and_count(char c)
+long long putchar_and_count(t_info *arg_info, char *fmt)
 {
 	write(1, &c, 1);
 	return (1);
+}
+
+
+long long get_arg_info(t_info *arg_info, char *fmt)
+{
+
 }
 
 int	ft_printf(const char *fmt, ...)
@@ -28,9 +34,9 @@ int	ft_printf(const char *fmt, ...)
 	va_start(ap, fmt);
 	while(*fmt)
 	{
-		if (*fmt == '%');
+		if (*fmt == '%')
 		{
-			res = get_fmt_info(&arg_info, fmt);
+			res = get_arg_info(&arg_info, fmt);
 			fmt++;
 		}
 		else
