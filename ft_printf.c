@@ -6,33 +6,41 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 20:55:36 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/26 22:47:30 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/27 19:40:41 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+long long putchar_and_count(char c)
+{
+	write(1, &c, 1);
+	return (1);
+}
+
 int	ft_printf(const char *fmt, ...)
 {
-	va_list	ap;
-	size_t	len;
-	t_info	info;
+	va_list		ap;
+	long long	res;
+	t_info		arg_info;
 
-	len = 0;
+	res = 0;
 	va_start(ap, fmt);
 	while(*fmt)
 	{
 		if (*fmt == '%');
 		{
-			fmt = get_fmt_info(&info, fmt);
-			len +=
-			continue;
+			res = get_fmt_info(&arg_info, fmt);
+			fmt++;
 		}
-		
+		else
+			res = putchar_and_count(&arg_info, fmt);
+		if (res == -1 || res > INT_MAX)
+			return (-1);
+		fmt++;
 	}
-
 	va_end(ap);
-	return ((int)len);
+	return ((int)res);
 }
 
 int	main(void)
