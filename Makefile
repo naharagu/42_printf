@@ -1,10 +1,10 @@
 CC		= gcc
 
-LIFBT	= ./libft/
+LIFBT	= ./libft
 
 CFLAGS	= -Wall -Wextra -Werror -I$(LIFBT)
 
-SRCS	= ft_printf.c
+SRCS	= ft_printf.c ft_put_s_p.c
 
 NAME	= libftprintf.a
 
@@ -12,17 +12,18 @@ OBJS	= ${SRCS:%.c=%.o}
 
 $(NAME): $(OBJS)
 	make -C $(LIFBT)
+	cp $(LIFBT)/libft.a $(NAME)
 	ar rc $(NAME) $(OBJS)
 
 all: $(NAME)
 
 clean:
-	make clean -C $(LIFBT)
 	rm -f $(OBJS)
+	make clean -C $(LIFBT)
 
 fclean: clean
-	make flean -C $(LIFBT)
 	rm -f $(NAME)
+	rm -f $(LIFBT)/libft.a
 
 re: fclean all
 
