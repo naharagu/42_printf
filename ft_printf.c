@@ -6,43 +6,54 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 20:55:36 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/27 20:01:56 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/28 15:54:03 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-long long putchar_and_count(t_info *arg_info, char *fmt)
+long long	convert_put(va_list ap, char *fmt, long long res)
 {
-	write(1, &c, 1);
-	return (1);
-}
-
-
-long long get_arg_info(t_info *arg_info, char *fmt)
-{
-
+	if (*fmt == 'c')
+		res += put_c(va_arg(ap, int));
+	else if (*fmt == 's')
+		res += put_s(va_arg(ap, char *));
+	else if (*fmt == 'p')
+		res += put_p(va_arg(ap, uintptr_t));
+	else if (*fmt == 'd' || *fmt == 'i')
+		res += put_d_i(va_arg(ap, int));
+	else if (*fmt == 'u')
+		res += put_u(va_arg(ap, unsigned int));
+	else if (*fmt == 'x' || *fmt == 'X')
+		res += put_x(va_arg(ap, unsigned int), fmt);
+	else if (*fmt == '%')
+		res += write(1, '%', 1);
+	else
+		res = -1;
+	return (res);
 }
 
 int	ft_printf(const char *fmt, ...)
 {
 	va_list		ap;
 	long long	res;
-	t_info		arg_info;
 
 	res = 0;
 	va_start(ap, fmt);
-	while(*fmt)
+	while (*fmt)
 	{
 		if (*fmt == '%')
 		{
-			res = get_arg_info(&arg_info, fmt);
+			res = convert_put(ap, fmt, res);
 			fmt++;
 		}
 		else
-			res = putchar_and_count(&arg_info, fmt);
+			res += write(1, fmt, 1);
 		if (res == -1 || res > INT_MAX)
+		{
+			va_end(ap);
 			return (-1);
+		}
 		fmt++;
 	}
 	va_end(ap);
