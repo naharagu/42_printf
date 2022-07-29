@@ -4,7 +4,7 @@ LIFBT	= ./libft
 
 CFLAGS	= -Wall -Wextra -Werror -I$(LIFBT)
 
-SRCS	= ft_printf.c ft_put_s_p.c
+SRCS	= ft_printf.c ft_put_c_s_p.c
 
 NAME	= libftprintf.a
 
