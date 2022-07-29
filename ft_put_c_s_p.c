@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 06:19:05 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/29 11:20:40 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/29 16:27:11 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ long long p_len(uintptr_t p)
 
 void put_p_helper(uintptr_t p, long long len)
 {
+	int a;
+
 	if (p >= 16)
 	{
 		put_p_helper(p / 16, len);
@@ -52,9 +54,10 @@ void put_p_helper(uintptr_t p, long long len)
 	else
 	{
 		if (p <= 9)
-			write(1, (int)(p + '0'), 1);
+			a = p + '0';
 		else
-			write(1, (int)(p - 10 + 'a'), 1);
+			a = p + 'a' - 10;
+		write(1, &a, 1);
 	}
 
 }
@@ -68,7 +71,7 @@ long long	put_p(uintptr_t p)
 		res += write(1, "0", 1);
 	else
 	{
-		put_p(p);
+		put_p_helper(p, res);
 		res += p_len(p);
 	}
 	return (res);
