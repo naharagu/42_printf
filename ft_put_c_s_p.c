@@ -19,19 +19,19 @@ long long	put_c(int c)
 
 long long	put_s(char *s)
 {
-	long long i;
+	long long	i;
 
 	i = 0;
 	if (!s)
-		return(write(1, "(null)", 6));
+		return (write(1, "(null)", 6));
 	while (s[i])
 		write(1, &s[i++], 1);
 	return (i);
 }
 
-long long p_len(uintptr_t p)
+long long	p_len(uintptr_t p)
 {
-	long long len;
+	long long	len;
 
 	len = 0;
 	while (p)
@@ -42,9 +42,9 @@ long long p_len(uintptr_t p)
 	return (len);
 }
 
-void put_p_helper(uintptr_t p, long long len)
+void	put_p_helper(uintptr_t p, long long len)
 {
-	int a;
+	int	a;
 
 	if (p >= 16)
 	{
@@ -59,7 +59,6 @@ void put_p_helper(uintptr_t p, long long len)
 			a = p + 'a' - 10;
 		write(1, &a, 1);
 	}
-
 }
 
 long long	put_p(uintptr_t p)

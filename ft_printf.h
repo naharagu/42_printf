@@ -19,8 +19,6 @@
 # include <limits.h>
 # include "libft/libft.h"
 
-# include <stdio.h>
-
 int			ft_printf(const char *fmt, ...);
 long long	convert_put(va_list ap, const char fmt, long long res);
 long long	put_c(int c);
