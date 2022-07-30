@@ -27,6 +27,5 @@ long long	put_p(uintptr_t p);
 long long	put_int(int n);
 long long	put_u(unsigned int u);
 long long	put_x(unsigned int x, char fmt);
-long long	get_hex_len(long long num);
 
 #endif

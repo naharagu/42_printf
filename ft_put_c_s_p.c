@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 06:19:05 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/30 10:34:12 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/30 11:04:24 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,15 @@ long long	put_s(char *s)
 	return (i);
 }
 
-long long	get_hex_len(long long num)
+long long	get_p_len(uintptr_t p)
 {
 	long long	len;
 
 	len = 0;
-	while (num)
+	while (p)
 	{
 		len++;
-		num = num / 16;
+		p = p / 16;
 	}
 	return (len);
 }
@@ -68,7 +68,7 @@ long long	put_p(uintptr_t p)
 	else
 	{
 		put_p_helper(p, res);
-		res += get_hex_len((long long)p);
+		res += get_p_len((long long)p);
 	}
 	return (res);
 }
