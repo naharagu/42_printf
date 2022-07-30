@@ -68,7 +68,7 @@ long long	put_p(uintptr_t p)
 	else
 	{
 		put_p_helper(p, res);
-		res += get_hex_len((long long) p);
+		res += get_hex_len((long long)p);
 	}
 	return (res);
 }
