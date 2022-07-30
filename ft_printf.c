@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 20:55:36 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/30 09:46:57 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/30 09:50:01 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ long long	convert_put(va_list ap, const char fmt, long long res)
 	else if (fmt == 'u')
 		res += put_int(va_arg(ap, long long));
 	else if (fmt == 'x' || fmt == 'X')
-		res += put_x(va_arg(ap, unsigned int), fmt, res);
+		res += put_x(va_arg(ap, unsigned int), fmt);
 	else if (fmt == '%')
 		res += write(1, "%", 1);
 	else

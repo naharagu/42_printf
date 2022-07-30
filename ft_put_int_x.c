@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 09:49:25 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/30 09:49:28 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/30 09:51:38 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,18 @@ long long	put_int(long long n)
 	}
 	else if (n > 10)
 	{
-		i += put_nbr(n / 10);
-		i += put_nbr(n % 10);
+		i += put_int(n / 10);
+		i += put_int(n % 10);
 	}
 	else
 	{
-		ft_putchr_fd((n + '0', 1));
+		ft_putchar_fd(n + '0', 1);
 		i++;
 	}
 	return (i);
 }
 
-long long	put_x_helper(unsigned int x, char fmt)
+void	put_x_helper(unsigned int x, char fmt)
 {
 	if (x >= 16)
 	{
