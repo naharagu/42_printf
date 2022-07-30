@@ -6,26 +6,26 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 20:55:36 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/30 09:50:01 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/30 10:34:36 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-long long	convert_put(va_list ap, const char fmt, long long res)
+long long	convert_put(va_list *ap, const char fmt, long long res)
 {
 	if (fmt == 'c')
-		res += put_c(va_arg(ap, int));
+		res += put_c(va_arg(*ap, int));
 	else if (fmt == 's')
-		res += put_s(va_arg(ap, char *));
+		res += put_s(va_arg(*ap, char *));
 	else if (fmt == 'p')
-		res += put_p(va_arg(ap, uintptr_t));
+		res += put_p(va_arg(*ap, uintptr_t));
 	else if (fmt == 'd' || fmt == 'i')
-		res += put_int(va_arg(ap, long long));
+		res += put_int(va_arg(*ap, int));
 	else if (fmt == 'u')
-		res += put_int(va_arg(ap, long long));
+		res += put_u(va_arg(*ap, unsigned int));
 	else if (fmt == 'x' || fmt == 'X')
-		res += put_x(va_arg(ap, unsigned int), fmt);
+		res += put_x(va_arg(*ap, unsigned int), fmt);
 	else if (fmt == '%')
 		res += write(1, "%", 1);
 	else
@@ -46,7 +46,7 @@ int	ft_printf(const char *fmt, ...)
 	{
 		if (fmt[i] == '%')
 		{
-			res = convert_put(ap, fmt[i + 1], res);
+			res = convert_put(&ap, fmt[i + 1], res);
 			i++;
 		}
 		else
