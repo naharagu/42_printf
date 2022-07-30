@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 20:55:36 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/29 16:32:26 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/30 09:46:57 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ long long	convert_put(va_list ap, const char fmt, long long res)
 		res += put_s(va_arg(ap, char *));
 	else if (fmt == 'p')
 		res += put_p(va_arg(ap, uintptr_t));
-	// else if (fmt == 'd' || fmt == 'i')
-	// 	res += put_d_i(va_arg(ap, int));
-	// else if (fmt == 'u')
-	// 	res += put_u(va_arg(ap, unsigned int));
-	// else if (fmt == 'x' || fmt == 'X')
-	// 	res += put_x(va_arg(ap, unsigned int), fmt);
+	else if (fmt == 'd' || fmt == 'i')
+		res += put_int(va_arg(ap, long long));
+	else if (fmt == 'u')
+		res += put_int(va_arg(ap, long long));
+	else if (fmt == 'x' || fmt == 'X')
+		res += put_x(va_arg(ap, unsigned int), fmt, res);
 	else if (fmt == '%')
-		res += write(1, '%', 1);
+		res += write(1, "%", 1);
 	else
 		res = -1;
 	return (res);
