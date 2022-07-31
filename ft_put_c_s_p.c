@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 06:19:05 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/30 11:04:24 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/31 18:17:35 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ long long	put_s(char *s)
 
 long long	get_p_len(uintptr_t p)
 {
-	long long	len;
+	size_t	len;
 
 	len = 0;
 	while (p)

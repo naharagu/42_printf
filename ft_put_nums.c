@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 09:49:25 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/30 11:03:44 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/31 18:17:58 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,19 @@ long long	put_u(unsigned int u)
 	return (i);
 }
 
+long long	get_hex_len(long long num)
+{
+	size_t	len;
+
+	len = 0;
+	while (num)
+	{
+		len++;
+		num = num / 16;
+	}
+	return (len);
+}
+
 void	put_x_helper(unsigned int x, char fmt)
 {
 	if (x >= 16)
@@ -74,19 +87,6 @@ void	put_x_helper(unsigned int x, char fmt)
 				ft_putchar_fd((x - 10 + 'A'), 1);
 		}
 	}
-}
-
-long long	get_hex_len(long long num)
-{
-	long long	len;
-
-	len = 0;
-	while (num)
-	{
-		len++;
-		num = num / 16;
-	}
-	return (len);
 }
 
 long long	put_x(unsigned int x, char fmt)

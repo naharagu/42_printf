@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 10:57:33 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/30 10:57:37 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/31 18:17:16 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_printf(const char *fmt, ...)
 {
 	va_list		ap;
 	long long	res;
-	long long	i;
+	size_t		i;
 
 	res = 0;
 	i = 0;
